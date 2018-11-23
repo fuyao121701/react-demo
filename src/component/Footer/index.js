@@ -24,11 +24,18 @@ export default class Footer extends React.Component {
                      img:require('../../image/footer/index.png'),
                      text:'首页'
                  },
-             ]
+             ],
+             currentIndex:0
          }
+
 
      }
 
+    select = (index) =>{
+        this.setState({
+            currentIndex:index
+        })
+    }
      render() {
          let FooterData  = this.state.FooterData;
          console.log(FooterData);
@@ -37,7 +44,7 @@ export default class Footer extends React.Component {
                  {
                      FooterData.map((item,index)=>{
                          return(
-                             <li key={index}>
+                             <li key={index} className={this.state.currentIndex == index?'current':''}  onClick={this.select.bind(this ,index)}>
                                  <img src={item.img} alt=""/>
                                  <p>{item.text}</p>
                              </li>
@@ -46,10 +53,6 @@ export default class Footer extends React.Component {
                  }
              </ul>
          )
-
-
-
-
 
      }
 
